@@ -1,1 +1,84 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrueNorth Metrics</title>
+  <meta name="description" content="TrueNorth Metrics tracks public-interest topics like LMIA scams and housing affordability with verified links and at-a-glance metrics." />
+  <meta property="og:title" content="TrueNorth Metrics" />
+  <meta property="og:description" content="Trusted snapshots on LMIA scams, housing affordability, and more." />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="/" />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- Optional: Google AdSense (uncomment after approval)
+  https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX
+  -->
+
+  <!-- Optional: Plausible Analytics (privacy-friendly)
+  <script defer data-domain="yourdomain.example" src="https://plausible.io/js/script.js"></script>
+  -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">TrueNorth <span>Metrics</span></h1>
+      <nav aria-label="Primary">
+        <a href="#topics">Topics</a>
+        <a href="/policies/privacy.html">Privacy</a>
+        <a href="/policies/terms.html">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <p>Trusted snapshots on public-interest topics with concise metrics, sources, and guidance. Updated from a public Google Sheet.</p>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search topics (e.g., LMIA, housing, Vancouver)…" aria-label="Search topics" />
+        <select id="region-filter" aria-label="Filter by region">
+          <option value="">All regions</option>
+        </select>
+        <select id="status-filter" aria-label="Filter by status">
+          <option value="">All statuses</option>
+          <option value="active">Active</option>
+          <option value="archived">Archived</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="topics" aria-live="polite">
+      <h2>Topics</h2>
+      <div id="topic-list" class="cards" role="list"></div>
+      <div id="empty" class="empty" hidden>No topics match your filters.</div>
+    </section>
+
+    <!-- Optional ad slot: uncomment and set your ad slot id after AdSense approval
+    <section class="ad">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+    </section>
+    -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> TrueNorth Metrics • Not legal or financial advice • <a href="/robots.txt">Robots</a></small>
+    </div>
+  </footer>
+
+  <div id="consent" class="consent" hidden>
+    <div class="consent-inner">
+      <p>We use cookies for basic analytics and ads (if enabled). <a href="/policies/privacy.html">Learn more</a>.</p>
+      <div class="consent-actions">
+        <button id="consent-accept">Accept</button>
+        <button id="consent-decline">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>
+
