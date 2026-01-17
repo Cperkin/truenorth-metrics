@@ -1,1 +1,58 @@
 
+{
+  "vintage": "CMHC RMS (survey Oct 2025; published 2025-12-11)",
+  "geography": "Zone (Vancouver)",
+  "units": "CAD per month",
+  "source": "CMHC Housing Market Information Portal — Vancouver, Summary by Zone",
+  "rows": [
+    {
+      "zone": "Downtown",
+      "rent_median": { "total": 2140 },
+      "rent_avg":    { "total": 2198 },
+      "reliability": { "total": "a" }
+    },
+    {
+      "zone": "Kitsilano/Point Grey",
+      "rent_median": { "total": 1931 },
+      "rent_avg":    { "total": 2051 },
+      "reliability": { "total": "a" }
+    },
+    {
+      "zone": "West End/Stanley Park",
+      "rent_median": { "total": 1950 },
+      "rent_avg":    { "total": 1914 },
+      "reliability": { "total": "b" }
+    },
+    {
+      "zone": "University Endowment Lands",
+      "rent_median": { "total": 2760 },
+      "rent_avg":    { "total": 2805 },
+      "reliability": { "total": "b" }
+    },
+    {
+      "zone": "South Granville/Oak",
+      "rent_median": { "total": 1839 },
+      "rent_avg":    { "total": 1929 },
+      "reliability": { "total": "a" }
+    },
+    {
+      "zone": "East Hastings",
+      "rent_median": { "total": 1750 },
+      "rent_avg":    { "total": 1827 },
+      "reliability": { "total": "a" }
+    },
+    {
+      "zone": "Southeast Vancouver",
+      "rent_median": { "total": 1920 },
+      "rent_avg":    { "total": 1968 },
+      "reliability": { "total": "b" }
+    },
+    {
+      "zone": "Marpole",
+      "rent_median": { "total": 1532 },
+      "rent_avg":    { "total": 1540 },
+      "reliability": { "total": "b" }
+    }
+  ]
+}
+
