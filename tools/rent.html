@@ -1,1 +1,56 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rent Fairness • TrueNorth Metrics</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">TrueNorth <span>Metrics</span></h1>
+      <nav aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/policies/privacy.html">Privacy</a>
+        <a href="/policies/terms.html">Terms</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Rent Fairness (Vancouver Zones)</h2>
+      <p>Enter your monthly rent and pick your CMHC Zone to see if you're likely underpaying, in the fair range, or overpaying relative to the latest CMHC Rental Market Survey (purpose‑built, all bedrooms).</p>
+    </section>
+
+    <section>
+      <div class="toolbar">
+        <select id="zone" aria-label="Select CMHC Zone">
+          <option value="">Select a Zone…</option>
+        </select>
+        <input id="rent" type="number" inputmode="numeric" min="1" step="1" placeholder="Monthly rent (e.g., 2400)" aria-label="Monthly rent" />
+        <button id="check">Check</button>
+      </div>
+      <div id="result" class="card" style="margin-top:1rem;"></div>
+    </section>
+
+    <section class="intro" style="margin-top:1rem;">
+      <small>
+        Sources: CMHC Housing Market Information Portal (zone‑level median/average rent, reliability letters), annual Rental Market Survey tables (latest published Dec 11, 2025). Rents may vary by inclusions (utilities, parking, appliances). Guidance only. 
+      </small>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> TrueNorth Metrics</small>
+    </div>
+  </footer>
+
+  <script src="/js/rent.js" type="module"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
