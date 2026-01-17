@@ -42,10 +42,16 @@ btn.addEventListener('click', async () => {
   }
 });
 
+function explainReliability(letter) {
+  const map = { a: 'Excellent', b: 'Very good', c: 'Good', d: 'Poor (use with caution)' };
+  return map[String(letter || '').toLowerCase()] || null;
+}
+
 function render(j, rent) {
   const vtxt = { 'likely-overpaying':'Likely Overpaying', 'fair-range':'In the Fair Range', 'likely-underpaying':'Likely Underpaying' }[j.result.verdict] || 'Result';
   const brLabel = { total:'All', '0':'Studio', '1':'1 BR', '2':'2 BR', '3':'3+ BR' }[j.inputs.bedrooms] || j.inputs.bedrooms;
-  const reli = j.benchmark.reliability ? ` • reliability: ${escapeHtml(j.benchmark.reliability)}` : '';
+  const reliText = explainReliability(j.benchmark.reliability);
+  const reli = j.benchmark.reliability? ` • reliability: <span title="${escapeHtml(reliText || '')}">${escapeHtml(j.benchmark.reliability)}</span>`: '';
   out.innerHTML = `
     <h3 style="margin:0 0 .25rem 0;">${vtxt}</h3>
     <p style="margin:.25rem 0;">Zone: <strong>${escapeHtml(j.inputs.zone)}</strong> • Bedroom: <strong>${escapeHtml(brLabel)}</strong></p>
@@ -61,6 +67,9 @@ function render(j, rent) {
       <p><small>Source: ${escapeHtml(j.benchmark.source)}</small></p>
     </details>`;
 }
+
+
+
 
 function fmt(n) { return new Intl.NumberFormat().format(Math.round(n)); }
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
