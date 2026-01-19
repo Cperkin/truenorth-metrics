@@ -8,15 +8,14 @@ const out    = document.getElementById('result');
 
 let ZONES = [];
 
-async function loadZones() {
-  try {
-    const data = await fetch('/api/rent/zones', { cache: 'no-store' }).then(r => r.json());
-    ZONES = (data.rows || []).map(r => r.zone).sort((a,b)=>a.localeCompare(b));
-    zoneEl.innerHTML = '<option value="">Select a Zone…</option>' + ZONES.map(z => `<option value="${escapeHtml(z)}">${escapeHtml(z)}</option>`).join('');
-    out.innerHTML = '';
-  } catch (e) {
-    out.innerHTML = `<p role="alert">Could not load CMHC zones. Add your dataset under /data and retry.</p>`;
-  }
+async function loadCities() {
+  const data = await fetch('/api/rent/zones').then(r=>r.json());
+  const cities = [...new Set(data.rows.map(r => r.city))].sort();
+
+  cityEl.innerHTML = '<option value="">Select a City…</option>' +
+    cities.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+
+  zoneEl.innerHTML = '<option value="">Select a Zone…</option>';
 }
 
 btn.addEventListener('click', async () => {
@@ -46,6 +45,18 @@ function explainReliability(letter) {
   const map = { a: 'Excellent', b: 'Very good', c: 'Good', d: 'Poor (use with caution)' };
   return map[String(letter || '').toLowerCase()] || null;
 }
+
+
+cityEl.addEventListener('change', () => {
+  const city = cityEl.value;
+  const options = DATA.rows
+      .filter(r => r.city === city)
+      .map(r => r.zone)
+      .sort();
+
+  zoneEl.innerHTML = '<option value="">Select a Zone…</option>' +
+    options.map(z => `<option value="${escapeHtml(z)}">${escapeHtml(z)}</option>`).join('');
+});
 
 function render(j, rent) {
   const vtxt = { 'likely-overpaying':'Likely Overpaying', 'fair-range':'In the Fair Range', 'likely-underpaying':'Likely Underpaying' }[j.result.verdict] || 'Result';
