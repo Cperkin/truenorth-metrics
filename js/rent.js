@@ -75,17 +75,7 @@ async function onCheck() {
   out.innerHTML = `<p>Checking…</p>`;
 
   try {
-    // ──────────────────────────────────────────────────────────────────────
-    // If you have NOT yet applied Part E (city-aware /api/rent/estimate):
-    // Keep using the original endpoint (which finds by zone only).
-    // This works best when zone names are unique across cities.
-    // ──────────────────────────────────────────────────────────────────────
-    const url = `/api/rent/estimate?zone=${encodeURIComponent(zone)}&bedrooms=${encodeURIComponent(br)}&rent=${encodeURIComponent(rent)}`;
-
-    // ──────────────────────────────────────────────────────────────────────
-    // If you DO apply Part E later, switch to:
-    // const url = `/api/rent/estimate?city=${encodeURIComponent(city)}&zone=${encodeURIComponent(zone)}&bedrooms=${encodeURIComponent(br)}&rent=${encodeURIComponent(rent)}`;
-    // ──────────────────────────────────────────────────────────────────────
+    const url = `/api/rent/estimate?city=${encodeURIComponent(city)}&zone=${encodeURIComponent(zone)}&bedrooms=${encodeURIComponent(br)}&rent=${encodeURIComponent(rent)}`;
 
     const res = await fetch(url, { cache: 'no-store' });
     const j = await res.json();
