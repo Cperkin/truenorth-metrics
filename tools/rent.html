@@ -21,14 +21,26 @@
 
   <main class="container">
     <section class="intro">
-      <h2>Rent Fairness (Vancouver Zones)</h2>
-      <p>Benchmark your rent against the latest CMHC Rental Market Survey for your CMHC Zone and bedroom type (purpose‑built rentals).</p>
+      <h2>Rent Fairness (Canada‑wide)</h2>
+      <p>
+        Benchmark your rent against the latest CMHC Rental Market Survey (RMS) for your City and Zone/Neighbourhood,
+        by bedroom type (purpose‑built rentals).
+      </p>
     </section>
 
     <section>
       <div class="toolbar">
-        <select id="city" aria-label="Select City"></select>
-        <select id="zone" aria-label="Select CMHC Zone"><option value="">Select a Zone…</option></select>
+        <!-- NEW: City selector -->
+        <select id="city" aria-label="Select City">
+          <option value="">Select a City…</option>
+        </select>
+
+        <!-- Zone selector (populated after City is chosen) -->
+        <select id="zone" aria-label="Select Zone/Neighbourhood">
+          <option value="">Select a Zone…</option>
+        </select>
+
+        <!-- Bedrooms selector (unchanged, but now applied for any city) -->
         <select id="bedrooms" aria-label="Select bedroom type">
           <option value="total">All (Total)</option>
           <option value="0">Studio / Bachelor</option>
@@ -36,21 +48,19 @@
           <option value="2" selected>2 Bedroom</option>
           <option value="3">3+ Bedroom</option>
         </select>
-        <input id="rent" type="number" placeholder="Monthly rent" />
+
+        <input id="rent" type="number" inputmode="numeric" min="1" step="1"
+               placeholder="Monthly rent (e.g., 2400)" aria-label="Monthly rent" />
         <button id="check">Check</button>
       </div>
+
       <div id="result" class="card" style="margin-top:1rem;"></div>
     </section>
 
-    <section class="intro" style="margin-top:1rem;">
-      <small>Source: CMHC Housing Market Information Portal (zone‑level medians/averages and reliability letters), annual Rental Market Survey tables. Purpose‑built market only; inclusions vary. Guidance only.</small>
-    </section>
-
+    <!-- Your reliability explainer (Option A) -->
     <section class="card" style="margin-top:1rem;">
       <h3 style="margin-top:0;">About “Reliability”</h3>
-      <p>
-        CMHC assigns a letter to indicate the reliability of each estimate in the Rental Market Survey:
-      </p>
+      <p>CMHC assigns a letter to indicate reliability for each RMS estimate:</p>
       <ul>
         <li><strong>a</strong> – Excellent</li>
         <li><strong>b</strong> – Very good</li>
@@ -58,15 +68,18 @@
         <li><strong>d</strong> – Poor (use with caution)</li>
       </ul>
       <p style="margin:.25rem 0;">
-        You’ll see this letter next to the benchmark in your result. It reflects sample size and data quality and is published with the HMIP zone tables for Vancouver. [1](https://esricanada.maps.arcgis.com/home/item.html?id=b9756a12307d43a9a12cf25b92d3b83a)
+        You’ll see this letter next to the benchmark in your result. It reflects sample size and data quality and is
+        published with CMHC HMIP zone tables.
       </p>
     </section>
-    
+
+    <section class="intro" style="margin-top:1rem;">
+      <small>
+        Source: CMHC Housing Market Information Portal & Rental Market Survey data tables (annual). Purpose‑built market only;
+        inclusions (utilities, parking, appliances) vary. Guidance only.
+      </small>
+    </section>
   </main>
 
-  <footer class="site-footer"><div class="container"><small>&copy; <span id="year"></span> TrueNorth Metrics</small></div></footer>
-
-  <script src="/js/rent.js" type="module"></script>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-</body>
-</html>
+  <footer class="site-footer">
+    <div class="container">
