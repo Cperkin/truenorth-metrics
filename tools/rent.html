@@ -27,6 +27,7 @@
 
     <section>
       <div class="toolbar">
+        <select id="city" aria-label="Select City"></select>
         <select id="zone" aria-label="Select CMHC Zone"><option value="">Select a Zone…</option></select>
         <select id="bedrooms" aria-label="Select bedroom type">
           <option value="total">All (Total)</option>
@@ -35,7 +36,7 @@
           <option value="2" selected>2 Bedroom</option>
           <option value="3">3+ Bedroom</option>
         </select>
-        <input id="rent" type="number" inputmode="numeric" min="1" step="1" placeholder="Monthly rent (e.g., 2400)" aria-label="Monthly rent" />
+        <input id="rent" type="number" placeholder="Monthly rent" />
         <button id="check">Check</button>
       </div>
       <div id="result" class="card" style="margin-top:1rem;"></div>
