@@ -1,6 +1,6 @@
 
 // Rent Fairness (CMHC-first) — v1.1
-// GET /api/rent/estimate?zone=Downtown&bedrooms=2&rent=2500
+// GET /api/rent/estimate?city=Vancouver&zone=Downtown&bedrooms=2&rent=2500
 
 export async function onRequest({ request }) {
   try {
