@@ -4,28 +4,19 @@
 // exported from HMIP and parses it on the fly.
 
 export async function onRequest({ request }) {
-  try {
-    const base = new URL(request.url);
-    const jsonUrl = new URL('/data/cmhc_vancouver_zone_rents_2025.json', base);
-    const csvUrl  = new URL('/data/cmhc_vancouver_zone_rents_2025.csv', base);
+  const { searchParams } = new URL(request.url);
+  const cityFilter = searchParams.get('city');
 
-    // Try JSON first
-    const tryJson = await fetch(jsonUrl, { cache: 'no-store' });
-    if (tryJson.ok && isJson(tryJson)) {
-      const j = await tryJson.json();
-      return respond(j);
-    }
+  const dataset = await loadCanadaDataset(); // your combined national CSV or JSON
 
-    // Fallback to CSV
-    const tryCsv = await fetch(csvUrl, { cache: 'no-store' });
-    if (!tryCsv.ok) return respond({ error: 'No CMHC dataset found in /data (expected JSON or CSV).'}, 404);
-    const text = await tryCsv.text();
-    const j = normalizeHMIPCsv(text);
-    return respond(j);
-  } catch (err) {
-    return respond({ error: err.message || String(err) }, 500);
+  if (cityFilter) {
+    const rows = dataset.rows.filter(r => r.city === cityFilter);
+    return json({ ...dataset, rows });
   }
+
+  return json(dataset);
 }
+
 
 function respond(obj, status = 200) {
   return new Response(JSON.stringify(obj, null, 2), {
